@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tenco.blog.repository.interfaces.PostsRepository">
+
+	<insert id="insert">
+		insert into posts(title, content, username, password, created_at)
+		values(#{title}, #{content}, #{username}, #{password}, now())
+	</insert>
+	
+	<delete id="deleteById">
+		delete from posts where id = #{id}
+	</delete>
+	
+	<update id="updateById">
+		update posts set title = #{title},
+						 content = #{content},
+						 username = #{username},
+						 password = #{password}
+						 where id = #{id}
+	</update>
+
+	<select id="findAll" resultType="com.tenco.blog.repository.model.Posts">
+		select * from posts 
+	</select>
+	
+	<select id="findById" resultType="com.tenco.blog.repository.model.Posts">
+		select * from posts where id = #{id}
+	</select>
+
+</mapper>
